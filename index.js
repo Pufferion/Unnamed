@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const os = require('os');
 const bot = new Discord.Client();
 
 const prefix = "un!";
@@ -27,7 +28,14 @@ bot.on("message", msg => {
         bot.commands.get('ping').execute(msg, args, bot);
     }
     if(cmd == "info") {
-        bot.commands.get('info').execute(msg, bot, Discord, prefix);
+        const embed = new Discord.MessageEmbed()
+            .setColor('#a913cf')
+            .addFields(
+                {name: "Uptime", value: os.uptime().toString()},
+                {name: "Prefix:", value: prefix}
+            )
+            .setFooter("omg what")
+        msg.channel.send(embed);
     }
 
 })
