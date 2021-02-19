@@ -1,3 +1,5 @@
+const os = require('os');
+
 module.exports = {
     name: "info",
     description: "displays bot info",
@@ -5,7 +7,7 @@ module.exports = {
         const embed = new Discord.MessageEmbed()
             .setColor('#a913cf')
             .addFields(
-                {name: "Uptime", value: process.uptime().toString()},
+                {name: "Uptime", value: os.uptime().toString()},
                 {name: "Prefix:", value: prefix}
             )
             .setFooter("omg what")
