@@ -25,8 +25,11 @@ bot.on("message", msg => {
 
     if(cmd == "ping") {
         bot.commands.get('ping').execute(msg, args, bot);
-        
     }
+    if(cmd == "info") {
+        bot.commands.get('info').execute(msg, bot);
+    }
+
 })
 
 bot.login("NzEwMTI2NjAyMjg5NDE0MTk1.Xrv67w.FO5YOmq-nRqt1RQy06FtPCtEl9w");
