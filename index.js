@@ -27,7 +27,7 @@ bot.on("message", msg => {
         bot.commands.get('ping').execute(msg, args, bot);
     }
     if(cmd == "info") {
-        bot.commands.get('info').execute(msg, bot);
+        bot.commands.get('info').execute(msg, bot, Discord, prefix);
     }
 
 })
