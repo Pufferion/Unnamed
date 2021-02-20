@@ -31,7 +31,7 @@ bot.on("message", msg => {
         const embed = new Discord.MessageEmbed()
             .setColor('#a913cf')
             .addFields(
-                {name: "Uptime", value: os.uptime().toString()},
+                {name: "Ping", value: `${Date.now() - msg.createdTimestamp}ms. API Latency is ${Math.round(bot.ws.ping)}ms`},
                 {name: "Prefix:", value: prefix}
             )
             .setFooter("omg what")
