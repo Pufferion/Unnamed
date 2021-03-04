@@ -14,6 +14,7 @@ for(const file of cmdFiles) {
 
 // Misc
 bot.on("ready", () => {
+    console.log(`Online! (${Date.now() /60/60})`);
     bot.user.setActivity("loli hentai", {type: "WATCHING"});
 })
 
@@ -24,20 +25,9 @@ bot.on("message", msg => {
     const args = msg.content.slice(prefix.length).split(/ +/);
     const cmd = args.shift().toLocaleLowerCase();
 
-    if(cmd == "ping") {
-        bot.commands.get('ping').execute(msg, args, bot);
-    }
-    if(cmd == "info") {
-        const embed = new Discord.MessageEmbed()
-            .setColor('#a913cf')
-            .addFields(
-                {name: "Ping", value: `${Date.now() - msg.createdTimestamp}ms. API Latency is ${Math.round(bot.ws.ping)}ms`},
-                {name: "Prefix:", value: prefix}
-            )
-            .setFooter("omg what")
-        msg.channel.send(embed);
-    }
-
+    if(cmd == "ping") {bot.commands.get('ping').execute(msg, args, bot);}
+    if(cmd == "help") {bot.commands.get('help').execute(msg);}
+    if(cmd == "kick") {bot.commands.get('kick').execute(msg, args);}
 })
 
 bot.login("NzEwMTI2NjAyMjg5NDE0MTk1.Xrv67w.FO5YOmq-nRqt1RQy06FtPCtEl9w");
