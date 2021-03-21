@@ -9,7 +9,7 @@ module.exports = {
                 target.kick();
                 mention.send("Oops, you've been kicked because: " + args[1] + ".");
             } catch {
-                msg.channel.send(":flushed: I don't have the right permissions..");
+                msg.channel.send(":flushed: I don't have the right permissions or the person has higher and/or better permissions..");
             }
         }else {
             msg.channel.send(":flushed: You don't have permission..")

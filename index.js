@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const os = require('os');
 const bot = new Discord.Client();
 
+const tenorKey = "0NF6UK2BLS7G";
+const discordKey = "NzEwMTI2NjAyMjg5NDE0MTk1.Xrv67w.FO5YOmq-nRqt1RQy06FtPCtEl9w";
 const prefix = "un!";
 
 const fs = require("fs");
@@ -19,7 +21,9 @@ bot.on("ready", () => {
 })
 
 // Messages
-bot.on("message", msg => {
+bot.on("message", onMsg)
+
+function onMsg(msg) {
     if(!msg.content.startsWith(prefix) || msg.author.bot) return;
 
     const args = msg.content.slice(prefix.length).split(/ +/);
@@ -28,6 +32,7 @@ bot.on("message", msg => {
     if(cmd == "ping") {bot.commands.get('ping').execute(msg, args, bot);}
     if(cmd == "help") {bot.commands.get('help').execute(msg);}
     if(cmd == "kick") {bot.commands.get('kick').execute(msg, args);}
-})
+    if(cmd == "m") {bot.commands.get('music').execute(msg, args);}
+}
 
-bot.login("NzEwMTI2NjAyMjg5NDE0MTk1.Xrv67w.FO5YOmq-nRqt1RQy06FtPCtEl9w");
+bot.login(discordKey);

@@ -8,9 +8,9 @@ module.exports = {
                 .addFields(
                 { name: "**Social**", value: "`un!hug <person>` - *Hugs the mentioned someone.*" },
                 { name: "**Moderation**", value: "`un!kick <person, reason (optional)>` - *Kicks someone out of the server.*" },
-                { name: "**Misc**", value: "`un!info` - *Displays bot info.*" },
+                { name: "**Misc**", value: "`un!info` - *Displays bot info.* \n `un!ping` - *Displays the bots ping*" },
             )
-            .setFooter("omg wauw")
+            .setFooter("made with the help of RAID SHADOW LEGENDS! the new free mobile mmorpg with great story and graphics.")
         msg.channel.send(embed);
     } 
 }
