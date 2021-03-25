@@ -6,8 +6,8 @@ module.exports = {
         if (msg.member.hasPermission('KICK_MEMBERS')) {
             try {
                 const target = msg.guild.members.cache.get(mention.id);
-                target.kick();
                 mention.send("Oops, you've been kicked because: " + args[1] + ".");
+                target.kick();
             } catch {
                 msg.channel.send(":flushed: I don't have the right permissions or the person has higher and/or better permissions..");
             }

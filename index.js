@@ -16,7 +16,7 @@ for(const file of cmdFiles) {
 
 // Misc
 bot.on("ready", () => {
-    console.log(`Online! (${Date.now() /60/60})`);
+    console.log(`Online!`);
     bot.user.setActivity("loli hentai", {type: "WATCHING"});
 })
 
@@ -32,7 +32,9 @@ function onMsg(msg) {
     if(cmd == "ping") {bot.commands.get('ping').execute(msg, args, bot);}
     if(cmd == "help") {bot.commands.get('help').execute(msg);}
     if(cmd == "kick") {bot.commands.get('kick').execute(msg, args);}
-    if(cmd == "m") {bot.commands.get('music').execute(msg, args);}
+    if(cmd == "play") {bot.commands.get('play').execute(msg, args);}
+    if(cmd == "p") {bot.commands.get('play').execute(msg, args);}
+    if(cmd == "stop") {bot.commands.get('stop').execute(msg, args);}
 }
 
 bot.login(discordKey);
