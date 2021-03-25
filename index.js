@@ -1,9 +1,11 @@
 const Discord = require('discord.js');
 const os = require('os');
+require('dotenv').config();
 const bot = new Discord.Client();
 
-const tenorKey = "0NF6UK2BLS7G";
-const discordKey = "NzEwMTI2NjAyMjg5NDE0MTk1.Xrv67w.FO5YOmq-nRqt1RQy06FtPCtEl9w";
+const config =  {
+    token: process.env.DISCORD
+};
 const prefix = "un!";
 
 const music_queue = new Map();
@@ -40,4 +42,4 @@ function onMsg(msg) {
     if(cmd == "skip") {bot.commands.get('skip').execute(msg, music_queue);}
 }
 
-bot.login(discordKey);
+bot.login(config.token);
