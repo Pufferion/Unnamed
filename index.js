@@ -6,6 +6,8 @@ const tenorKey = "0NF6UK2BLS7G";
 const discordKey = "NzEwMTI2NjAyMjg5NDE0MTk1.Xrv67w.FO5YOmq-nRqt1RQy06FtPCtEl9w";
 const prefix = "un!";
 
+const music_queue = new Map();
+
 const fs = require("fs");
 bot.commands = new Discord.Collection();
 const cmdFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -32,9 +34,10 @@ function onMsg(msg) {
     if(cmd == "ping") {bot.commands.get('ping').execute(msg, args, bot);}
     if(cmd == "help") {bot.commands.get('help').execute(msg);}
     if(cmd == "kick") {bot.commands.get('kick').execute(msg, args);}
-    if(cmd == "play") {bot.commands.get('play').execute(msg, args);}
-    if(cmd == "p") {bot.commands.get('play').execute(msg, args);}
-    if(cmd == "stop") {bot.commands.get('stop').execute(msg, args);}
+    if(cmd == "play") {bot.commands.get('play').execute(msg, args, music_queue);}
+    if(cmd == "p") {bot.commands.get('play').execute(msg, args, music_queue);}
+    if(cmd == "stop") {bot.commands.get('stop').execute(msg, music_queue);}
+    if(cmd == "skip") {bot.commands.get('skip').execute(msg, music_queue);}
 }
 
 bot.login(discordKey);
