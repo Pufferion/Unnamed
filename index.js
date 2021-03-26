@@ -4,7 +4,8 @@ require('dotenv').config();
 const bot = new Discord.Client();
 
 const config =  {
-    token: process.env.DISCORD
+    token: process.env.DISCORD,
+    yt: process.env.YT
 };
 const prefix = "un!";
 
@@ -40,6 +41,9 @@ function onMsg(msg) {
     if(cmd == "p") {bot.commands.get('play').execute(msg, args, music_queue);}
     if(cmd == "stop") {bot.commands.get('stop').execute(msg, music_queue);}
     if(cmd == "skip") {bot.commands.get('skip').execute(msg, music_queue);}
+    if(cmd == "volume") {bot.commands.get('volume').execute(msg, args, music_queue);}
+    if(cmd == "queue") {bot.commands.get('queue').execute(msg, music_queue);}
+    if(cmd == "q") {bot.commands.get('queue').execute(msg, music_queue);}
 }
 
 bot.login(config.token);

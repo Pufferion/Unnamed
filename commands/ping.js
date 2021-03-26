@@ -1,3 +1,5 @@
+const youtube = require('simple-youtube-api');
+
 module.exports = {
     name: 'ping',
     description: "displays ping",

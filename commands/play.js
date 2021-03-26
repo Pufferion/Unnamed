@@ -1,6 +1,13 @@
 const ytdl = require('ytdl-core');
+const { Util } = require('discord.js');
+const youtube = require('simple-youtube-api');
 
 var _q = null;
+
+const config =  {
+    yt: process.env.YT
+};
+const yt = new youtube(config.yt);
 
 module.exports = {
     name: 'play',
@@ -14,11 +21,22 @@ module.exports = {
         const perms = voice.permissionsFor(msg.client.user);
         if(!perms.has('CONNECT')) {msg.channel.send("You don't have perms LAMOOOO");}
         if(!perms.has('SPEAK')) {msg.channel.send("You don't have perms LAMOOOO");}
+
+        try {
+            var v = await yt.getVideoByID(args);
+        } catch {
+            try{
+                var vs = await yt.searchVideos(args, 1);
+                var v = await yt.getVideoByID(vs[0].id);
+            } catch {
+                msg.channel.send("Oops...");
+            }
+        }
         
-        const songInfo = await ytdl.getInfo(args[0]);
         const song = {
-            title: songInfo.videoDetails.title,
-            url: songInfo.videoDetails.video_url
+            title: Util.escapeMarkdown(v.title),
+            id: v.id,
+            url: `https://www.youtube.com/watch?v=${v.id}`
         }
 
         const serverQ = q.get(msg.guild.id);
@@ -59,7 +77,7 @@ function play(g, queue, song, msg) {
         queue.delete(g.id);
     }
 
-    const dispatcher = serverQ.connection.play(ytdl(song.url))
+    try  {const dispatcher = serverQ.connection.play(ytdl(song.id), {filter: 'audioonly'})
         .on('finish', () => {
             serverQ.songs.shift();
             play(g, _q, serverQ.songs[0]);
@@ -67,8 +85,9 @@ function play(g, queue, song, msg) {
         .on('error', error => {
             console.log(error);
         })
-        .on('start', () => {
-            serverQ.text.send(`Now playing **${song.title}**`);
-        })
         dispatcher.setVolumeLogarithmic( serverQ.volume / 5);
+
+        serverQ.text.send(`Now playing **${song.title}**`);} catch {
+            return undefined;
+        }
 }
